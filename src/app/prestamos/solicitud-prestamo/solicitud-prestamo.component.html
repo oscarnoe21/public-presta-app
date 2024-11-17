@@ -1,0 +1,50 @@
+<h2>Solicitud de Préstamo</h2>
+<form (ngSubmit)="onSubmit()" #prestamoForm="ngForm" class="form-container">
+  <div class="form-group">
+    <label for="clienteId">ID del Cliente:</label>
+    <input type="text" id="clienteId" required [(ngModel)]="prestamo.clienteId" name="clienteId" #clienteId="ngModel" class="form-control">
+    <div [hidden]="clienteId.valid || clienteId.pristine" class="error">
+      ID del Cliente es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="monto">Monto del Préstamo:</label>
+    <input type="number" id="monto" required [(ngModel)]="prestamo.monto" name="monto" #monto="ngModel" class="form-control">
+    <div [hidden]="monto.valid || monto.pristine" class="error">
+      Monto del Préstamo es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="plazo">Plazo (meses):</label>
+    <input type="number" id="plazo" required [(ngModel)]="prestamo.plazo" name="plazo" #plazo="ngModel" class="form-control">
+    <div [hidden]="plazo.valid || plazo.pristine" class="error">
+      Plazo es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="interes">Tasa de Interés (%):</label>
+    <input type="number" id="interes" required [(ngModel)]="prestamo.interes" name="interes" #interes="ngModel" class="form-control">
+    <div [hidden]="interes.valid || interes.pristine" class="error">
+      Tasa de Interés es requerida.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="frecuenciaPago">Frecuencia de Pago:</label>
+    <select id="frecuenciaPago" required [(ngModel)]="prestamo.frecuenciaPago" name="frecuenciaPago" #frecuenciaPago="ngModel" class="form-control">
+      <option value="mensual">Mensual</option>
+      <option value="semanal">Semanal</option>
+    </select>
+    <div [hidden]="frecuenciaPago.valid || frecuenciaPago.pristine" class="error">
+      Frecuencia de Pago es requerida.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!prestamoForm.form.valid">Solicitar Préstamo</button>
+    <button type="button" class="btn btn-secondary" (click)="verPlanificacion()" [disabled]="!prestamoForm.form.valid">Ver Planificación de Cuotas</button>
+  </div>
+</form>

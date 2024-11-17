@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <span>Lista de Clientes</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" (click)="onNew()">
+    <mat-icon>add</mat-icon>
+    Nuevo Cliente
+  </button>
+</mat-toolbar>
+
+<mat-card>
+  <mat-table [dataSource]="clientes" class="mat-elevation-z8">
+    <ng-container matColumnDef="identificacion">
+      <mat-header-cell *matHeaderCellDef> Identificacion </mat-header-cell>
+      <mat-cell *matCellDef="let cliente">
+        {{ cliente.identificacion }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{ cliente.nombre }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+      <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{ cliente.apellido }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{ cliente.email }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+      <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{ cliente.telefono }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="direccion">
+      <mat-header-cell *matHeaderCellDef> Direccion </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{ cliente.direccion }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let cliente">
+
+        <button mat-icon-button color="primary" (click)="onEdit(cliente)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(cliente)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>

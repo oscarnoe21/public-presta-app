@@ -1,0 +1,219 @@
+<h2>{{ isEditMode ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+<form (ngSubmit)="onSubmit()" #clienteForm="ngForm" class="form-container">
+  <div class="form-group">
+    <label for="identificacion">Identificacion:</label>
+    <input type="text" id="identificacion" required [(ngModel)]="cliente.identificacion" name="identificacion" #identificacion="ngModel" class="form-control" pattern="^[0-9]*$">
+    <div [hidden]="identificacion.valid || identificacion.pristine" class="error">
+      Identificacion es requerida y debe ser numérica.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required [(ngModel)]="cliente.nombre" name="nombre" #nombre="ngModel" class="form-control">
+    <div [hidden]="nombre.valid || nombre.pristine" class="error">
+      Nombre es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" required [(ngModel)]="cliente.apellido" name="apellido" #apellido="ngModel" class="form-control">
+    <div [hidden]="apellido.valid || apellido.pristine" class="error">
+      Apellido es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" required [(ngModel)]="cliente.email" name="email" #email="ngModel" class="form-control">
+    <div [hidden]="email.valid || email.pristine" class="error">
+      Email es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">Telefono:</label>
+    <input type="text" id="telefono" required [(ngModel)]="cliente.telefono" name="telefono" #telefono="ngModel" class="form-control">
+    <div [hidden]="telefono.valid || telefono.pristine" class="error">
+      Telefono es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">Direccion:</label>
+    <input type="text" id="direccion" required [(ngModel)]="cliente.direccion" name="direccion" #direccion="ngModel" class="form-control">
+    <div [hidden]="direccion.valid || direccion.pristine" class="error">
+      Direccion es requerida.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!clienteForm.form.valid">{{ isEditMode ? 'Actualizar' : 'Registrar' }}</button>
+    <button type="button" (click)="onBack()" class="btn btn-secondary" [disabled]="false" >{{ 'Regresar' }}</button>
+  </div>
+</form>
+
+<!--
+<h2>Registro de Cliente</h2>
+<form (ngSubmit)="onSubmit()" #clienteForm="ngForm" class="form-container">
+  <div class="form-group">
+    <label for="identificacion">Identificacion:</label>
+    <input
+      type="text"
+      id="identificacion"
+      required
+      [(ngModel)]="cliente.identificacion"
+      name="identificacion"
+      #identificacion="ngModel"
+      class="form-control"
+      pattern="^[0-9]*$"
+      placeholder="Solo números"
+    />
+    <div
+      [hidden]="identificacion.valid || identificacion.pristine"
+      class="error"
+    >
+      Identificacion es requerida.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input
+      type="text"
+      id="nombre"
+      required
+      [(ngModel)]="cliente.nombre"
+      name="nombre"
+      #nombre="ngModel"
+      class="form-control"
+      placeholder="Nombre"
+    />
+    <div [hidden]="nombre.valid || nombre.pristine" class="error">
+      Nombre es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="apellido">Apellido:</label>
+    <input
+      type="text"
+      id="apellido"
+      required
+      [(ngModel)]="cliente.apellido"
+      name="apellido"
+      #apellido="ngModel"
+      class="form-control"
+      placeholder="Apellido"
+    />
+    <div [hidden]="apellido.valid || apellido.pristine" class="error">
+      Apellido es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      required
+      [(ngModel)]="cliente.email"
+      name="email"
+      #email="ngModel"
+      class="form-control"
+      placeholder="Email"
+    />
+    <div [hidden]="email.valid || email.pristine" class="error">
+      Email es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">Teléfono:</label>
+    <input
+      type="text"
+      id="telefono"
+      required
+      [(ngModel)]="cliente.telefono"
+      name="telefono"
+      #telefono="ngModel"
+      class="form-control"
+      placeholder="Teléfono"
+
+    />
+    <div [hidden]="telefono.valid || telefono.pristine" class="error">
+      Teléfono es requerido.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">Dirección:</label>
+    <input
+      type="text"
+      id="direccion"
+      required
+      [(ngModel)]="cliente.direccion"
+      name="direccion"
+      #direccion="ngModel"
+      class="form-control"
+      placeholder="Dirección"
+    />
+    <div [hidden]="direccion.valid || direccion.pristine" class="error">
+      Dirección es requerida.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!clienteForm.form.valid"
+    >
+      Registrar
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="onUpdate()"
+      [disabled]="!clienteForm.form.valid"
+    >
+      Actualizar
+    </button>
+    <button type="button" class="btn btn-danger" (click)="onDelete(cliente)">
+      Eliminar
+    </button>
+  </div>
+</form>
+
+<h2>Lista de Clientes</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Identificacion</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Telefono</th>
+      <th>Dirección</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.identificacion }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.apellido }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.telefono }}</td>
+      <td>{{ cliente.direccion }}</td>
+      <td>
+        <button (click)="onEdit(cliente)" class="btn btn-info">Editar</button>
+        <button (click)="onDelete(cliente)" class="btn btn-danger">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+-->

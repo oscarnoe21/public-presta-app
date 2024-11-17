@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Planificación de Cuotas</h1>
+<div mat-dialog-content>
+  <table mat-table [dataSource]="data.cuotas" class="mat-elevation-z8">
+    <ng-container matColumnDef="numero">
+      <mat-header-cell *matHeaderCellDef> Número </mat-header-cell>
+      <mat-cell *matCellDef="let cuota"> {{cuota.numero}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="capital">
+      <mat-header-cell *matHeaderCellDef> Capital </mat-header-cell>
+      <mat-cell *matCellDef="let cuota"> {{cuota.capital | currency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="interes">
+      <mat-header-cell *matHeaderCellDef> Interés </mat-header-cell>
+      <mat-cell *matCellDef="let cuota"> {{cuota.interes | currency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="monto">
+      <mat-header-cell *matHeaderCellDef> Monto </mat-header-cell>
+      <mat-cell *matCellDef="let cuota"> {{cuota.monto | currency}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</div>
